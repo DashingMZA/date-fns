@@ -14,7 +14,7 @@ const formatDistanceLocale: FormatDistanceLocale<FormatDistanceTokenValue> = {
   },
 
   xSeconds: {
-    one: "1 سیکنڈ",
+    one: "ایک سیکنڈ",
     other: "{{count}} سیکنڈ",
   },
 
@@ -26,62 +26,62 @@ const formatDistanceLocale: FormatDistanceLocale<FormatDistanceTokenValue> = {
   },
 
   xMinutes: {
-    one: "1 منٹ",
+    one: "ایک منٹ",
     other: "{{count}} منٹ",
   },
 
   aboutXHours: {
-    one: "تقریباً 1 گھنٹہ",
+    one: "تقریباً ایک گھنٹہ",
     other: "تقریباً {{count}} گھنٹے",
   },
 
   xHours: {
-    one: "1 گھنٹہ",
+    one: "ایک گھنٹہ",
     other: "{{count}} گھنٹے",
   },
 
   xDays: {
-    one: "1 دن",
+    one: "ایک دن",
     other: "{{count}} دن",
   },
 
   aboutXWeeks: {
-    one: "تقریباً 1 ہفتہ",
+    one: "تقریباً ایک ہفتہ",
     other: "تقریباً {{count}} ہفتے",
   },
 
   xWeeks: {
-    one: "1 ہفتہ",
+    one: "ایک ہفتہ",
     other: "{{count}} ہفتے",
   },
 
   aboutXMonths: {
-    one: "تقریباً 1 مہینہ",
+    one: "تقریباً ایک مہینہ",
     other: "تقریباً {{count}} مہینے",
   },
 
   xMonths: {
-    one: "1 مہینہ",
+    one: "ایک مہینہ",
     other: "{{count}} مہینے",
   },
 
   aboutXYears: {
-    one: "تقریباً 1 سال",
+    one: "تقریباً ایک سال",
     other: "تقریباً {{count}} سال",
   },
 
   xYears: {
-    one: "1 سال",
+    one: "ایک سال",
     other: "{{count}} سال",
   },
 
   overXYears: {
-    one: "1 سال سے زیادہ",
+    one: "ایک سال سے زیادہ",
     other: "{{count}} سال سے زیادہ",
   },
 
   almostXYears: {
-    one: "لگ بھگ 1 سال",
+    one: "لگ بھگ ایک سال",
     other: "لگ بھگ {{count}} سال",
   },
 };
@@ -100,10 +100,8 @@ export const formatDistance: FormatDistanceFn = (token, count, options) => {
 
   if (options?.addSuffix) {
     if (options.comparison && options.comparison > 0) {
-      // Urdu is postpositional: "5 منٹ میں" (in 5 minutes)
       return result + " میں";
     } else {
-      // "5 منٹ پہلے" (5 minutes ago)
       return result + " پہلے";
     }
   }

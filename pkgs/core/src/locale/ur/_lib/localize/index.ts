@@ -2,14 +2,19 @@ import type { Localize, LocalizeFn } from "../../../types.ts";
 import { buildLocalizeFn } from "../../../_lib/buildLocalizeFn/index.ts";
 
 const eraValues = {
-  narrow: ["ق", "ع"] as const,
+  narrow: ["ق م", "عیسوی"] as const,
   abbreviated: ["ق م", "عیسوی"] as const,
   wide: ["قبل مسیح", "عیسوی"] as const,
 };
 
 const quarterValues = {
   narrow: ["1", "2", "3", "4"] as const,
-  abbreviated: ["سہ ماہی 1", "سہ ماہی 2", "سہ ماہی 3", "سہ ماہی 4"] as const,
+  abbreviated: [
+    "پہلی سہ ماہی",
+    "دوسری سہ ماہی",
+    "تیسری سہ ماہی",
+    "چوتھی سہ ماہی",
+  ] as const,
   wide: [
     "پہلی سہ ماہی",
     "دوسری سہ ماہی",
@@ -18,8 +23,6 @@ const quarterValues = {
   ] as const,
 };
 
-// Urdu has no capitalization, and Pakistani usage writes month names in full
-// even in abbreviated form (same as CLDR ur).
 const monthValues = {
   narrow: ["ج", "ف", "م", "ا", "م", "ج", "ج", "ا", "س", "ا", "ن", "د"] as const,
   abbreviated: [
@@ -52,7 +55,6 @@ const monthValues = {
   ] as const,
 };
 
-// Index 0 = Sunday (اتوار)
 const dayValues = {
   narrow: ["ا", "پ", "م", "ب", "ج", "ج", "ہ"] as const,
   short: ["اتوار", "پیر", "منگل", "بدھ", "جمعرات", "جمعہ", "ہفتہ"] as const,
@@ -68,35 +70,44 @@ const dayValues = {
   wide: ["اتوار", "پیر", "منگل", "بدھ", "جمعرات", "جمعہ", "ہفتہ"] as const,
 };
 
-const dayPeriods = {
-  am: "AM",
-  pm: "PM",
-  midnight: "آدھی رات",
-  noon: "دوپہر",
-  morning: "صبح",
-  afternoon: "سہ پہر",
-  evening: "شام",
-  night: "رات",
-};
-
 const dayPeriodValues = {
-  narrow: dayPeriods,
-  abbreviated: dayPeriods,
-  wide: dayPeriods,
+  narrow: {
+    am: "AM",
+    pm: "PM",
+    midnight: "آدھی رات",
+    noon: "دوپہر",
+    morning: "صبح",
+    afternoon: "دوپہر",
+    evening: "شام",
+    night: "رات",
+  },
+  abbreviated: {
+    am: "AM",
+    pm: "PM",
+    midnight: "آدھی رات",
+    noon: "دوپہر",
+    morning: "صبح",
+    afternoon: "دوپہر",
+    evening: "شام",
+    night: "رات",
+  },
+  wide: {
+    am: "AM",
+    pm: "PM",
+    midnight: "آدھی رات",
+    noon: "دوپہر",
+    morning: "صبح",
+    afternoon: "دوپہر",
+    evening: "شام",
+    night: "رات",
+  },
 };
 
-const formattingDayPeriodValues = {
-  narrow: dayPeriods,
-  abbreviated: dayPeriods,
-  wide: dayPeriods,
-};
-
-const ordinalNumber: LocalizeFn<number> = (dirtyNumber, _options) => {
-  return String(dirtyNumber);
-};
+// Urdu does not use ordinal suffixes in dates: "11 فروری 2026"
+const ordinalNumber: LocalizeFn<number> = (num) => String(num);
 
 export const localize: Localize = {
-  ordinalNumber,
+  ordinalNumber: ordinalNumber,
 
   era: buildLocalizeFn({
     values: eraValues,
@@ -122,7 +133,5 @@ export const localize: Localize = {
   dayPeriod: buildLocalizeFn({
     values: dayPeriodValues,
     defaultWidth: "wide",
-    formattingValues: formattingDayPeriodValues,
-    defaultFormattingWidth: "wide",
   }),
 };

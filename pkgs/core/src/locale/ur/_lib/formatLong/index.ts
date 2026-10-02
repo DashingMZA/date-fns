@@ -1,11 +1,11 @@
-import type { FormatLong } from "../../../types.ts";
 import { buildFormatLongFn } from "../../../_lib/buildFormatLongFn/index.ts";
+import type { FormatLong } from "../../../types.ts";
 
 const dateFormats = {
   full: "EEEE، d MMMM y",
   long: "d MMMM y",
-  medium: "d MMM y",
-  short: "dd/MM/y",
+  medium: "d MMM، y",
+  short: "dd/MM/yyyy",
 };
 
 const timeFormats = {
@@ -16,8 +16,8 @@ const timeFormats = {
 };
 
 const dateTimeFormats = {
-  full: "{{date}} 'بوقت' {{time}}",
-  long: "{{date}} 'بوقت' {{time}}",
+  full: "{{date}} کو {{time}}",
+  long: "{{date}} کو {{time}}",
   medium: "{{date}}، {{time}}",
   short: "{{date}}، {{time}}",
 };

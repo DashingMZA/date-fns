@@ -1,14 +1,14 @@
-import type { Quarter } from "../../../../types.ts";
-import type { Match } from "../../../types.ts";
-import { buildMatchFn } from "../../../_lib/buildMatchFn/index.ts";
 import { buildMatchPatternFn } from "../../../_lib/buildMatchPatternFn/index.ts";
+import { buildMatchFn } from "../../../_lib/buildMatchFn/index.ts";
+import type { Match } from "../../../types.ts";
+import type { Quarter } from "../../../../types.ts";
 
 const matchOrdinalNumberPattern = /^(\d+)/i;
 const parseOrdinalNumberPattern = /\d+/i;
 
 const matchEraPatterns = {
-  narrow: /^(ق|ع)/i,
-  abbreviated: /^(ق\s?م|عیسوی)/i,
+  narrow: /^(ق م|عیسوی)/i,
+  abbreviated: /^(ق م|عیسوی)/i,
   wide: /^(قبل مسیح|عیسوی)/i,
 };
 const parseEraPatterns = {
@@ -17,7 +17,7 @@ const parseEraPatterns = {
 
 const matchQuarterPatterns = {
   narrow: /^[1234]/i,
-  abbreviated: /^سہ ماہی [1234]/i,
+  abbreviated: /^(پہلی|دوسری|تیسری|چوتھی) سہ ماہی/i,
   wide: /^(پہلی|دوسری|تیسری|چوتھی) سہ ماہی/i,
 };
 const parseQuarterPatterns = {
@@ -27,8 +27,8 @@ const parseQuarterPatterns = {
 const matchMonthPatterns = {
   narrow: /^[جفماسند]/i,
   abbreviated:
-    /^(جنوری|فروری|مارچ|اپریل|مئی|مئ|جون|جولائی|اگست|ستمبر|اکتوبر|نومبر|دسمبر)/i,
-  wide: /^(جنوری|فروری|مارچ|اپریل|مئی|مئ|جون|جولائی|اگست|ستمبر|اکتوبر|نومبر|دسمبر)/i,
+    /^(جنوری|فروری|مارچ|اپریل|مئی|جون|جولائی|اگست|ستمبر|اکتوبر|نومبر|دسمبر)/i,
+  wide: /^(جنوری|فروری|مارچ|اپریل|مئی|جون|جولائی|اگست|ستمبر|اکتوبر|نومبر|دسمبر)/i,
 };
 const parseMonthPatterns = {
   narrow: [
@@ -50,7 +50,7 @@ const parseMonthPatterns = {
     /^فر/i,
     /^مار/i,
     /^اپ/i,
-    /^مئ/i,
+    /^مئی/i,
     /^جون/i,
     /^جول/i,
     /^اگ/i,
@@ -69,31 +69,23 @@ const matchDayPatterns = {
 };
 const parseDayPatterns = {
   narrow: [/^ا/i, /^پ/i, /^م/i, /^ب/i, /^ج/i, /^ج/i, /^ہ/i] as const,
-  any: [
-    /^ات/i,
-    /^پیر/i,
-    /^منگ/i,
-    /^بد/i,
-    /^جمعرات/i,
-    /^جمعہ/i,
-    /^ہفت/i,
-  ] as const,
+  any: [/^ات/i, /^پی/i, /^من/i, /^بد/i, /^جمعر/i, /^جمعہ/i, /^ہف/i] as const,
 };
 
 const matchDayPeriodPatterns = {
-  narrow: /^(AM|PM|آدھی رات|دوپہر|صبح|سہ پہر|شام|رات)/i,
-  any: /^(AM|PM|آدھی رات|دوپہر|صبح|سہ پہر|شام|رات)/i,
+  narrow: /^(AM|PM|آدھی رات|دوپہر|صبح|شام|رات)/i,
+  any: /^(AM|PM|آدھی رات|دوپہر|صبح|شام|رات)/i,
 };
 const parseDayPeriodPatterns = {
   any: {
-    am: /^AM/i,
-    pm: /^PM/i,
-    midnight: /^آدھی/i,
-    noon: /^دوپہر/i,
-    morning: /^صبح/i,
-    afternoon: /^سہ/i,
-    evening: /^شام/i,
-    night: /^رات/i,
+    am: /^am/i,
+    pm: /^pm/i,
+    midnight: /^آدھی رات/,
+    noon: /^دوپہر/,
+    afternoon: /^دوپہر/,
+    morning: /^صبح/,
+    evening: /^شام/,
+    night: /^رات/,
   },
 };
 
@@ -101,7 +93,7 @@ export const match: Match = {
   ordinalNumber: buildMatchPatternFn({
     matchPattern: matchOrdinalNumberPattern,
     parsePattern: parseOrdinalNumberPattern,
-    valueCallback: (value) => parseInt(value, 10),
+    valueCallback: (value: string) => parseInt(value, 10),
   }),
 
   era: buildMatchFn({

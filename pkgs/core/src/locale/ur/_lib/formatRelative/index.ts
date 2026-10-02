@@ -1,17 +1,13 @@
 import type { FormatRelativeFn } from "../../../types.ts";
 
 const formatRelativeLocale = {
-  lastWeek: "'گزشتہ' eeee 'بوقت' p",
-  yesterday: "'گزشتہ کل بوقت' p",
-  today: "'آج بوقت' p",
-  tomorrow: "'آئندہ کل بوقت' p",
-  nextWeek: "'آئندہ' eeee 'بوقت' p",
+  lastWeek: "'گزشتہ' eeee 'کو' p",
+  yesterday: "'گزشتہ کل' p",
+  today: "'آج' p",
+  tomorrow: "'آنے والا کل' p",
+  nextWeek: "'آئندہ' eeee 'کو' p",
   other: "P",
 };
 
-export const formatRelative: FormatRelativeFn = (
-  token,
-  _date,
-  _baseDate,
-  _options,
-) => formatRelativeLocale[token];
+export const formatRelative: FormatRelativeFn = (token) =>
+  formatRelativeLocale[token];
