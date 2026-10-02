@@ -114,6 +114,8 @@ const dayValues = {
 
 const dayPeriodValues = {
   narrow: {
+    am: "AM",
+    pm: "PM",
     midnight: "آدھی رات",
     noon: "دوپہر",
     morning: "صبح",
@@ -122,6 +124,8 @@ const dayPeriodValues = {
     night: "رات",
   },
   abbreviated: {
+    am: "AM",
+    pm: "PM",
     midnight: "آدھی رات",
     noon: "دوپہر",
     morning: "صبح",
@@ -130,6 +134,8 @@ const dayPeriodValues = {
     night: "رات",
   },
   wide: {
+    am: "AM",
+    pm: "PM",
     midnight: "آدھی رات",
     noon: "دوپہر",
     morning: "صبح",

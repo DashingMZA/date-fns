@@ -98,12 +98,14 @@ const parseDayPatterns = {
 };
 
 const matchDayPeriodPatterns = {
-  narrow: /^(آدھی رات|دوپہر|صبح|شام|رات)/i,
-  any: /^(آدھی رات|دوپہر|صبح|شام|رات)/i,
+  narrow: /^(AM|PM|آدھی رات|دوپہر|صبح|شام|رات)/i,
+  any: /^(AM|PM|آدھی رات|دوپہر|صبح|شام|رات)/i,
 };
 
 const parseDayPeriodPatterns = {
   any: {
+    am: /^am/i,
+    pm: /^pm/i,
     midnight: /^آدھی رات/i,
     noon: /^دوپہر/i,
     afternoon: /^دوپہر/i,
