@@ -8,7 +8,12 @@ const eraValues = {
 };
 
 const quarterValues = {
-  narrow: ["1", "2", "3", "4"] as const,
+  narrow: [
+    "پہلی سہ ماہی",
+    "دوسری سہ ماہی",
+    "تیسری سہ ماہی",
+    "چوتھی سہ ماہی",
+  ] as const,
   abbreviated: [
     "پہلی سہ ماہی",
     "دوسری سہ ماہی",
@@ -24,7 +29,20 @@ const quarterValues = {
 };
 
 const monthValues = {
-  narrow: ["ج", "ف", "م", "ا", "م", "ج", "ج", "ا", "س", "ا", "ن", "د"] as const,
+  narrow: [
+    "جنوری",
+    "فروری",
+    "مارچ",
+    "اپریل",
+    "مئی",
+    "جون",
+    "جولائی",
+    "اگست",
+    "ستمبر",
+    "اکتوبر",
+    "نومبر",
+    "دسمبر",
+  ] as const,
   abbreviated: [
     "جنوری",
     "فروری",
@@ -56,8 +74,24 @@ const monthValues = {
 };
 
 const dayValues = {
-  narrow: ["ا", "پ", "م", "ب", "ج", "ج", "ہ"] as const,
-  short: ["اتوار", "پیر", "منگل", "بدھ", "جمعرات", "جمعہ", "ہفتہ"] as const,
+  narrow: [
+    "اتوار",
+    "پیر",
+    "منگل",
+    "بدھ",
+    "جمعرات",
+    "جمعہ",
+    "ہفتہ",
+  ] as const,
+  short: [
+    "اتوار",
+    "پیر",
+    "منگل",
+    "بدھ",
+    "جمعرات",
+    "جمعہ",
+    "ہفتہ",
+  ] as const,
   abbreviated: [
     "اتوار",
     "پیر",
@@ -67,13 +101,19 @@ const dayValues = {
     "جمعہ",
     "ہفتہ",
   ] as const,
-  wide: ["اتوار", "پیر", "منگل", "بدھ", "جمعرات", "جمعہ", "ہفتہ"] as const,
+  wide: [
+    "اتوار",
+    "پیر",
+    "منگل",
+    "بدھ",
+    "جمعرات",
+    "جمعہ",
+    "ہفتہ",
+  ] as const,
 };
 
 const dayPeriodValues = {
   narrow: {
-    am: "AM",
-    pm: "PM",
     midnight: "آدھی رات",
     noon: "دوپہر",
     morning: "صبح",
@@ -82,8 +122,6 @@ const dayPeriodValues = {
     night: "رات",
   },
   abbreviated: {
-    am: "AM",
-    pm: "PM",
     midnight: "آدھی رات",
     noon: "دوپہر",
     morning: "صبح",
@@ -92,8 +130,6 @@ const dayPeriodValues = {
     night: "رات",
   },
   wide: {
-    am: "AM",
-    pm: "PM",
     midnight: "آدھی رات",
     noon: "دوپہر",
     morning: "صبح",
@@ -107,7 +143,7 @@ const dayPeriodValues = {
 const ordinalNumber: LocalizeFn<number> = (num) => String(num);
 
 export const localize: Localize = {
-  ordinalNumber: ordinalNumber,
+  ordinalNumber,
 
   era: buildLocalizeFn({
     values: eraValues,
